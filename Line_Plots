@@ -1,0 +1,34 @@
+#multiple line plot 
+#each line representing the trend for each year
+
+data = data
+x = weekly,monthly, yearly 
+y = value 
+hue = year (multiple lines)
+
+plt.figure(figsize=(25,6))
+sns.set_theme(style="whitegrid", font_scale=1.5)
+sns.lineplot(data = data, x= x , y = y,
+ hue = hue, palette = 'Dark2_r',linewidth=5 )
+plt.legend(loc='lower left', title= hue)
+plt.title(title, fontdict={'fontsize': 25})
+
+
+#facet_wrap
+#multiple line plots for multiple categories  
+
+data = data
+x = weekly,monthly, yearly 
+y = value to be represented
+hue = year (multiple lines)
+col = categories
+col_wrap = number of each ctegory plots in one row 
+
+plt.figure(figsize=(25,8))
+sns.set_theme(style="whitegrid", font_scale=1.5)
+g = sns.relplot(data= data, x= x, y=y, hue=hue,  col=col, palette = 'Dark2_r',linewidth=5 ,
+    kind="line", height=5, aspect=1.5,
+    col_wrap = col_wrap)
+title_name = title
+g.fig.subplots_adjust(top=0.9) 
+g.fig.suptitle(title_name.title(),fontsize = 21)
