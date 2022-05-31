@@ -20,8 +20,6 @@ sns.heatmap(cor_mat,
 ######################################################################################################################################################################
 
 # getting the multiple bar plots of correlation for each category 
-# cor_var = ['state','category','sales_volume']
-# num_cols = [ 'sales_volume', 'avg_price_20']
 
 data = data
 cat_col =  categorical column (in strings)
