@@ -1,0 +1,17 @@
+import matplotlib as plt
+import seaborn as sns
+
+
+get_pie_chart(data, variable, value,aggn ,title):
+
+  data = data.groupby([variable]).agg({value:[aggn]}).reset_index()
+  data.columns = [''.join(col).strip() for col in data.columns.values]
+  data = data.sort_values(variable + "sum").reset_index(drop=True)
+  plt.figure(figsize=(25,8))
+  sns.set_theme(style="whitegrid", font_scale=1)
+  # plotting data on chart
+  plt.pie(data[value + "sum"], labels=data[variable], autopct='%1.0f%%', colors=sns.color_palette('bright'))
+  plt.title(Title, fontdict={'fontsize': 20})
+  del data
+  
+  
