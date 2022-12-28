@@ -1,0 +1,33 @@
+
+cor_var = ['groupby variable','name for x axis','value 1']
+num_cols = ['value 1','value 2']
+data = data
+
+#correlation matrix
+cor_mat = data.groupby(cor_var[0])[num_cols].corr().reset_index()
+
+#renaming the index in the matrix 
+cor_mat.rename(columns = {'level_1':cor_var[1]}, inplace = True)
+
+#taking only the required columns
+cor_mat = cor_mat[cor_var]
+# cor_mat[cor_var[2]]= np.round(cor_mat[cor_var[2]]*100)
+#ploting
+plt.figure(figsize=(15,7))
+sns.set_theme(style="whitegrid", font_scale=1)
+title_name = "Corplot for " + cor_var[0] + "\n\n"
+cor_mat = cor_mat[cor_mat[cor_var[2]]!=1]
+
+#plotting the bar graph 
+ax = sns.barplot(data=cor_mat, x=cor_var[0], y=cor_var[2] ,palette = sns.color_palette('bright'))
+
+#labeling the values for each bar 
+
+for p in ax.patches:
+         ax.annotate("%.2f" % p.get_height(), (p.get_x() + p.get_width() / 2., p.get_height()),
+             ha='center', va='center', fontsize=11, color='black', xytext=(0, 8),
+             textcoords='offset points')
+        
+title =  "correlation for "+cor_var[1]
+plt.title(title, fontdict={'fontsize': 15})
+plt.show()
